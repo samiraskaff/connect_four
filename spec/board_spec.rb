@@ -4,23 +4,14 @@ require "./lib/board"
 
 RSpec.describe Board do
   it "exists" do
-    player = "Wes"
-    board = Board.new(player)
+    board = Board.new
 
     expect(board).to be_an_instance_of Board
   end
 
-  xit "prints a board with welcome message" do
+  xit "prints a board" do
     board = Board.new
-    expect(board.start).to output(
-      "welcome message here
-      ABCDEFG
-      .......
-      .......
-      .......
-      .......
-      .......
-      ......."
-    )
+
+    expect(board.display).to start_with("ABCDEFG")
   end
 end
