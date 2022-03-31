@@ -3,12 +3,9 @@ require "rspec"
 require "./lib/player"
 require "./lib/board"
 
-player = Player.new("Sage")
-
 board = Board.new
+player = "Thelonious"
+game = Game.new(board) # suggestion of how we can use this
 
-board.display # test to run ruby file
-
-# game = Game.new(player, board) # suggestion of how we can use this
-
-# game.start # initializes and starts the game
+# starts the game
+game.start
