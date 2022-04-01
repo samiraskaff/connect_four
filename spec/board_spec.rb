@@ -12,9 +12,6 @@ RSpec.describe Board do
   it "prints a board" do
     board = Board.new
 
-task :task_name => [:dependent, :tasks] do
-
-end
-    expect(board.display).to eq(6)
+    expect(board.display).to eq(nil)
   end
 end

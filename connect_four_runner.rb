@@ -5,7 +5,7 @@ require "./lib/board"
 
 board = Board.new
 player = "Thelonious"
-game = Game.new(board) # suggestion of how we can use this
+game = Game.new(board, player) # suggestion of how we can use this
 
 # starts the game
 game.start
