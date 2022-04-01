@@ -1,6 +1,8 @@
 require "pry"
 class Board
   attr_reader :columns, :board
+
+  # creates a board
   def initialize
     @columns = {
       A: [".", ".", ".", ".", ".", "."],
@@ -13,6 +15,7 @@ class Board
     }
   end
 
+  # displays a board
   def display
     puts columns.keys.join
     6.times do
@@ -22,10 +25,5 @@ class Board
         columns[:G][starting_index]
       starting_index + 1
     end
-
-    # def start # I think this should be in the game file
-    #   p "Welcome"
-    #   p display
-    # end
   end
 end
