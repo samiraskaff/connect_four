@@ -1,6 +1,6 @@
 require "pry"
 require "rspec"
-require "./lib/player"
+require "./lib/game"
 require "./lib/board"
 
 board = Board.new

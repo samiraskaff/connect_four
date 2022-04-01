@@ -11,7 +11,10 @@ RSpec.describe Board do
 
   it "prints a board" do
     board = Board.new
-    binding.pry
-    expect(board.display).to start_with("ABCDEFG")
+
+task :task_name => [:dependent, :tasks] do
+
+end
+    expect(board.display).to eq(6)
   end
 end
