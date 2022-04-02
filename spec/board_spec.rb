@@ -30,7 +30,6 @@ RSpec.describe Board do
     player = "Thelonious"
     game = Game.new(board, player)
     game.start
-    binding.pry
     board.place_piece(:A, "x")
 
     # after board.place_piece(:A, "x")
