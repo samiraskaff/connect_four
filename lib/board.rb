@@ -31,15 +31,15 @@ class Board
     return
   end
 
-  def place_piece(column_key, x_o)
-    indx = columns[column_key].find_index(".")
-    if indx == nil
-      p "That's not a valid option"
-      #code runs here to return to user input...maybe
-    elsif indx.between?(0, 5)
-      columns[column_key][indx] = x_o
-    else
-      raise "There was an error placing a piece"
-    end
-  end
+  # def place_piece(column_key, x_o)
+  #   indx = columns[column_key].find_index(".")
+  #   if indx == nil
+  #     p "That's not a valid option"
+  #     #code runs here to return to user input...maybe
+  #   elsif indx.between?(0, 5)
+  #     columns[column_key][indx] = x_o
+  #   else
+  #     raise "There was an error placing a piece"
+  #   end
+  # end
 end
