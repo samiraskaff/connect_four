@@ -7,6 +7,7 @@ class Game
   def initialize(turn, player)
     @player = player
     @turn = turn
+    @round = 0
   end
 
   # starts a game
@@ -16,14 +17,30 @@ class Game
       p "Enter p to play. Enter q to quit."
       game_start_input = gets.chomp.downcase
       if game_start_input == "p"
-        21.times do
-          turn.board.display
-          turn.player_input
-          turn.board.display
-          turn.computer_input
+        # turn.board.reset
+        loop do
+          if @round == 21
+            turn.board.display
+            p "The game is a draw, gg!"
+            break
+          else
+            turn.board.display
+            turn.player_input
+            if turn.board.win? == true
+              turn.board.display
+              p "Congrats #{player}! You have won!"
+              break
+            end
+            turn.board.display
+            turn.computer_input
+            if turn.board.win? == true
+              turn.board.display
+              p "You lost to the computer! ggez..."
+              break
+            end
+            @round += 1
+          end
         end
-        turn.board.display
-        p "The game is a draw, gg!"
       elsif game_start_input == "q"
         exit
       else
