@@ -32,16 +32,4 @@ class Game
       end
     end
   end
-    # draw
-
-    # if turn_count.even? == true
-    #   turn.player_input
-    # elsif turn_count.even? == true
-    #   turn.computer_input
-    # end
-    # @turn_count += 1
-    # @board.display
-
-
-  # updates turn counter and swaps between player and computer
 end

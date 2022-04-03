@@ -14,7 +14,7 @@ class Turn
       player_column_input = $stdin.gets.chomp.upcase.to_sym
       if @valid_keys.include?(player_column_input)
         @board.place_piece(player_column_input)
-        break
+        break # this break is causing an error when selecting an invalid piece
       else
         p "That's not a valid option. Please make a valid selection."
       end

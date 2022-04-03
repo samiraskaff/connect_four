@@ -4,8 +4,7 @@ require "./lib/board"
 require "./lib/turn"
 require "./lib/game"
 
-RSpec.describe do
-  Game
+RSpec.describe Game do
   it "exists" do
     board = Board.new
     turn = Turn.new(board)
