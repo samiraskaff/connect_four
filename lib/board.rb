@@ -36,14 +36,23 @@ class Board
     puts row
   end
 
-  def place_piece(column_input)
-    indx = columns[column_input].find_index(".")
-    if indx.nil?
-      p "That's not a valid option. Please make a valid selection."
-    elsif indx.between?(0, 5)
-      columns[column_input][indx] = "x"
-    else
-      p "That's not a valid option. Please make a valid selection."
+  def player_place_piece
+    loop do
+      p "Please select a columns."
+      player_column_input = $stdin.gets.chomp.upcase.to_sym
+      if columns.key?(player_column_input)
+        indx = columns[player_column_input].find_index(".")
+        if indx.nil?
+          p "That's not a valid option. Please make a valid selection."
+        elsif indx.between?(0, 5)
+          columns[player_column_input][indx] = "x"
+          break
+        else
+          p "That's not a valid option. Please make a valid selection."
+        end
+      else
+        p "That's not a valid option. Please make a valid selection."
+      end
     end
   end
 
@@ -59,74 +68,93 @@ class Board
   end
 
   def win?
-    diagonal_win_1 = [column[:A][0], column[:B][1], column[:C][2], column[:D][3]]
-    diagonal_win_2 = [column[:B][0], column[:C][1], column[:D][3], column[:E][3]]
-    diagonal_win_3 = [column[:C][0], column[:D][1], column[:E][2], column[:F][3]]
-    diagonal_win_4 = [column[:D][0], column[:E][1], column[:F][2], column[:G][3]]
-    diagonal_win_5 = [column[:A][1], column[:B][2], column[:C][3], column[:D][4]]
-    diagonal_win_6 = [column[:B][1], column[:C][2], column[:D][3], column[:E][4]]
-    diagonal_win_7 = [column[:C][1], column[:D][2], column[:E][3], column[:F][4]]
-    diagonal_win_8 = [column[:D][1], column[:E][2], column[:F][3], column[:G][4]]
-    diagonal_win_9 = [column[:A][2], column[:B][3], column[:C][4], column[:D][5]]
-    diagonal_win_10 = [column[:B][2], column[:C][3], column[:D][4], column[:E][5]]
-    diagonal_win_11 = [column[:C][2], column[:D][3], column[:E][4], column[:F][5]]
-    diagonal_win_12 = [column[:D][2], column[:E][3], column[:F][4], column[:G][5]]
-    diagonal_win_13 = [column[:D][0], column[:C][1], column[:B][2], column[:A][3]]
-    diagonal_win_14 = [column[:E][0], column[:D][1], column[:C][2], column[:B][3]]
-    diagonal_win_15 = [column[:F][0], column[:E][1], column[:D][2], column[:C][3]]
-    diagonal_win_16 = [column[:G][0], column[:F][1], column[:E][2], column[:D][3]]
-    diagonal_win_17 = [column[:D][1], column[:C][2], column[:B][3], column[:A][4]]
-    diagonal_win_18 = [column[:E][1], column[:D][2], column[:C][3], column[:B][4]]
-    diagonal_win_19 = [column[:F][1], column[:E][2], column[:D][3], column[:C][4]]
-    diagonal_win_20 = [column[:G][1], column[:F][2], column[:E][3], column[:D][4]]
-    diagonal_win_21 = [column[:D][2], column[:C][3], column[:B][4], column[:A][5]]
-    diagonal_win_22 = [column[:E][2], column[:D][3], column[:C][4], column[:B][5]]
-    diagonal_win_23 = [column[:F][2], column[:E][3], column[:D][4], column[:C][5]]
-    diagonal_win_24 = [column[:G][2], column[:F][3], column[:E][4], column[:D][5]]
-    vertical_win_1 = [column[:A][2], column[:A][3], column[:A][4], column[:A][5]]
-    vertical_win_2 = [column[:A][1], column[:A][2], column[:A][3], column[:A][4]]
-    vertical_win_3 = [column[:A][0], column[:A][1], column[:A][2], column[:A][3]]
-    vertical_win_4 = [column[:B][2], column[:B][3], column[:B][4], column[:B][5]]
-    vertical_win_5 = [column[:B][1], column[:B][2], column[:B][3], column[:B][4]]
-    vertical_win_6 = [column[:B][0], column[:B][1], column[:B][2], column[:B][3]]
-    vertical_win_7 = [column[:C][2], column[:C][3], column[:C][4], column[:C][5]]
-    vertical_win_8 = [column[:C][1], column[:C][2], column[:C][3], column[:C][4]]
-    vertical_win_9 = [column[:C][0], column[:C][1], column[:C][2], column[:C][3]]
-    vertical_win_10 = [column[:D][2], column[:D][3], column[:D][4], column[:D][5]]
-    vertical_win_11 = [column[:D][1], column[:D][2], column[:D][3], column[:D][4]]
-    vertical_win_12 = [column[:D][0], column[:D][1], column[:D][2], column[:D][3]]
-    vertical_win_13 = [column[:E][2], column[:E][3], column[:E][4], column[:E][5]]
-    vertical_win_14 = [column[:E][1], column[:E][2], column[:E][3], column[:E][4]]
-    vertical_win_15 = [column[:E][0], column[:E][1], column[:E][2], column[:E][3]]
-    vertical_win_16 = [column[:F][2], column[:F][3], column[:F][4], column[:F][5]]
-    vertical_win_17 = [column[:F][1], column[:F][2], column[:F][3], column[:F][4]]
-    vertical_win_18 = [column[:F][0], column[:F][1], column[:F][2], column[:F][3]]
-    vertical_win_19 = [column[:G][2], column[:G][3], column[:G][4], column[:G][5]]
-    vertical_win_20 = [column[:G][1], column[:G][2], column[:G][3], column[:G][4]]
-    vertical_win_21 = [column[:G][0], column[:G][1], column[:G][2], column[:G][3]]
-    horizontal_win_1 = [column[:A][0], column[:B][0], column[:C][0], column[:D][0]]
-    horizontal_win_2 = [column[:A][1], column[:B][1], column[:C][1], column[:D][1]]
-    horizontal_win_3 = [column[:A][2], column[:B][2], column[:C][2], column[:D][2]]
-    horizontal_win_4 = [column[:A][3], column[:B][3], column[:C][3], column[:D][3]]
-    horizontal_win_5 = [column[:A][4], column[:B][4], column[:C][4], column[:D][4]]
-    horizontal_win_6 = [column[:A][5], column[:B][5], column[:C][5], column[:D][5]]
-    horizontal_win_7 = [column[:B][0], column[:C][0], column[:D][0], column[:E][0]]
-    horizontal_win_8 = [column[:B][1], column[:C][1], column[:D][1], column[:E][1]]
-    horizontal_win_9 = [column[:B][2], column[:C][2], column[:D][2], column[:E][2]]
-    horizontal_win_10 = [column[:B][3], column[:C][3], column[:D][3], column[:E][3]]
-    horizontal_win_11 = [column[:B][4], column[:C][4], column[:D][4], column[:E][4]]
-    horizontal_win_12 = [column[:C][5], column[:C][5], column[:D][5], column[:E][5]]
-    horizontal_win_13 = [column[:C][0], column[:D][0], column[:E][0], column[:F][0]]
-    horizontal_win_14 = [column[:C][1], column[:D][1], column[:E][1], column[:F][1]]
-    horizontal_win_15 = [column[:C][2], column[:D][2], column[:E][2], column[:F][2]]
-    horizontal_win_16 = [column[:C][3], column[:D][3], column[:E][3], column[:F][3]]
-    horizontal_win_17 = [column[:C][4], column[:D][4], column[:E][4], column[:F][4]]
-    horizontal_win_18 = [column[:C][5], column[:D][5], column[:E][5], column[:F][5]]
-    horizontal_win_19 = [column[:D][0], column[:E][0], column[:F][0], column[:G][0]]
-    horizontal_win_20 = [column[:D][1], column[:E][1], column[:F][1], column[:G][1]]
-    horizontal_win_21 = [column[:D][2], column[:E][2], column[:F][2], column[:G][2]]
-    horizontal_win_22 = [column[:D][3], column[:E][3], column[:F][3], column[:G][3]]
-    horizontal_win_23 = [column[:D][4], column[:E][4], column[:F][4], column[:G][4]]
-    horizontal_win_24 = [column[:D][5], column[:E][5], column[:G][5], column[:G][5]]
+    win_array = [
+      diagonal_win_1 = [columns[:A][0], columns[:B][1], columns[:C][2], columns[:D][3]],
+      diagonal_win_2 = [columns[:B][0], columns[:C][1], columns[:D][3], columns[:E][3]],
+      diagonal_win_3 = [columns[:C][0], columns[:D][1], columns[:E][2], columns[:F][3]],
+      diagonal_win_4 = [columns[:D][0], columns[:E][1], columns[:F][2], columns[:G][3]],
+      diagonal_win_5 = [columns[:A][1], columns[:B][2], columns[:C][3], columns[:D][4]],
+      diagonal_win_6 = [columns[:B][1], columns[:C][2], columns[:D][3], columns[:E][4]],
+      diagonal_win_7 = [columns[:C][1], columns[:D][2], columns[:E][3], columns[:F][4]],
+      diagonal_win_8 = [columns[:D][1], columns[:E][2], columns[:F][3], columns[:G][4]],
+      diagonal_win_9 = [columns[:A][2], columns[:B][3], columns[:C][4], columns[:D][5]],
+      diagonal_win_10 = [columns[:B][2], columns[:C][3], columns[:D][4], columns[:E][5]],
+      diagonal_win_11 = [columns[:C][2], columns[:D][3], columns[:E][4], columns[:F][5]],
+      diagonal_win_12 = [columns[:D][2], columns[:E][3], columns[:F][4], columns[:G][5]],
+      diagonal_win_13 = [columns[:D][0], columns[:C][1], columns[:B][2], columns[:A][3]],
+      diagonal_win_14 = [columns[:E][0], columns[:D][1], columns[:C][2], columns[:B][3]],
+      diagonal_win_15 = [columns[:F][0], columns[:E][1], columns[:D][2], columns[:C][3]],
+      diagonal_win_16 = [columns[:G][0], columns[:F][1], columns[:E][2], columns[:D][3]],
+      diagonal_win_17 = [columns[:D][1], columns[:C][2], columns[:B][3], columns[:A][4]],
+      diagonal_win_18 = [columns[:E][1], columns[:D][2], columns[:C][3], columns[:B][4]],
+      diagonal_win_19 = [columns[:F][1], columns[:E][2], columns[:D][3], columns[:C][4]],
+      diagonal_win_20 = [columns[:G][1], columns[:F][2], columns[:E][3], columns[:D][4]],
+      diagonal_win_21 = [columns[:D][2], columns[:C][3], columns[:B][4], columns[:A][5]],
+      diagonal_win_22 = [columns[:E][2], columns[:D][3], columns[:C][4], columns[:B][5]],
+      diagonal_win_23 = [columns[:F][2], columns[:E][3], columns[:D][4], columns[:C][5]],
+      diagonal_win_24 = [columns[:G][2], columns[:F][3], columns[:E][4], columns[:D][5]],
+      vertical_win_1 = [columns[:A][2], columns[:A][3], columns[:A][4], columns[:A][5]],
+      vertical_win_2 = [columns[:A][1], columns[:A][2], columns[:A][3], columns[:A][4]],
+      vertical_win_3 = [columns[:A][0], columns[:A][1], columns[:A][2], columns[:A][3]],
+      vertical_win_4 = [columns[:B][2], columns[:B][3], columns[:B][4], columns[:B][5]],
+      vertical_win_5 = [columns[:B][1], columns[:B][2], columns[:B][3], columns[:B][4]],
+      vertical_win_6 = [columns[:B][0], columns[:B][1], columns[:B][2], columns[:B][3]],
+      vertical_win_7 = [columns[:C][2], columns[:C][3], columns[:C][4], columns[:C][5]],
+      vertical_win_8 = [columns[:C][1], columns[:C][2], columns[:C][3], columns[:C][4]],
+      vertical_win_9 = [columns[:C][0], columns[:C][1], columns[:C][2], columns[:C][3]],
+      vertical_win_10 = [columns[:D][2], columns[:D][3], columns[:D][4], columns[:D][5]],
+      vertical_win_11 = [columns[:D][1], columns[:D][2], columns[:D][3], columns[:D][4]],
+      vertical_win_12 = [columns[:D][0], columns[:D][1], columns[:D][2], columns[:D][3]],
+      vertical_win_13 = [columns[:E][2], columns[:E][3], columns[:E][4], columns[:E][5]],
+      vertical_win_14 = [columns[:E][1], columns[:E][2], columns[:E][3], columns[:E][4]],
+      vertical_win_15 = [columns[:E][0], columns[:E][1], columns[:E][2], columns[:E][3]],
+      vertical_win_16 = [columns[:F][2], columns[:F][3], columns[:F][4], columns[:F][5]],
+      vertical_win_17 = [columns[:F][1], columns[:F][2], columns[:F][3], columns[:F][4]],
+      vertical_win_18 = [columns[:F][0], columns[:F][1], columns[:F][2], columns[:F][3]],
+      vertical_win_19 = [columns[:G][2], columns[:G][3], columns[:G][4], columns[:G][5]],
+      vertical_win_20 = [columns[:G][1], columns[:G][2], columns[:G][3], columns[:G][4]],
+      vertical_win_21 = [columns[:G][0], columns[:G][1], columns[:G][2], columns[:G][3]],
+      horizontal_win_1 = [columns[:A][0], columns[:B][0], columns[:C][0], columns[:D][0]],
+      horizontal_win_2 = [columns[:A][1], columns[:B][1], columns[:C][1], columns[:D][1]],
+      horizontal_win_3 = [columns[:A][2], columns[:B][2], columns[:C][2], columns[:D][2]],
+      horizontal_win_4 = [columns[:A][3], columns[:B][3], columns[:C][3], columns[:D][3]],
+      horizontal_win_5 = [columns[:A][4], columns[:B][4], columns[:C][4], columns[:D][4]],
+      horizontal_win_6 = [columns[:A][5], columns[:B][5], columns[:C][5], columns[:D][5]],
+      horizontal_win_7 = [columns[:B][0], columns[:C][0], columns[:D][0], columns[:E][0]],
+      horizontal_win_8 = [columns[:B][1], columns[:C][1], columns[:D][1], columns[:E][1]],
+      horizontal_win_9 = [columns[:B][2], columns[:C][2], columns[:D][2], columns[:E][2]],
+      horizontal_win_10 = [columns[:B][3], columns[:C][3], columns[:D][3], columns[:E][3]],
+      horizontal_win_11 = [columns[:B][4], columns[:C][4], columns[:D][4], columns[:E][4]],
+      horizontal_win_12 = [columns[:C][5], columns[:C][5], columns[:D][5], columns[:E][5]],
+      horizontal_win_13 = [columns[:C][0], columns[:D][0], columns[:E][0], columns[:F][0]],
+      horizontal_win_14 = [columns[:C][1], columns[:D][1], columns[:E][1], columns[:F][1]],
+      horizontal_win_15 = [columns[:C][2], columns[:D][2], columns[:E][2], columns[:F][2]],
+      horizontal_win_16 = [columns[:C][3], columns[:D][3], columns[:E][3], columns[:F][3]],
+      horizontal_win_17 = [columns[:C][4], columns[:D][4], columns[:E][4], columns[:F][4]],
+      horizontal_win_18 = [columns[:C][5], columns[:D][5], columns[:E][5], columns[:F][5]],
+      horizontal_win_19 = [columns[:D][0], columns[:E][0], columns[:F][0], columns[:G][0]],
+      horizontal_win_20 = [columns[:D][1], columns[:E][1], columns[:F][1], columns[:G][1]],
+      horizontal_win_21 = [columns[:D][2], columns[:E][2], columns[:F][2], columns[:G][2]],
+      horizontal_win_22 = [columns[:D][3], columns[:E][3], columns[:F][3], columns[:G][3]],
+      horizontal_win_23 = [columns[:D][4], columns[:E][4], columns[:F][4], columns[:G][4]],
+      horizontal_win_24 = [columns[:D][5], columns[:E][5], columns[:G][5], columns[:G][5]]
+    ]
+
+    win_cond_1 = ["x", "x", "x", "x"]
+    win_cond_2 = ["o", "o", "o", "o"]
+    win_array.include?(win_cond_1) || win_array.include?(win_cond_2)
+  end
+
+  def reset
+    @columns =
+      {
+        A: [".", ".", ".", ".", ".", "."],
+        B: [".", ".", ".", ".", ".", "."],
+        C: [".", ".", ".", ".", ".", "."],
+        D: [".", ".", ".", ".", ".", "."],
+        E: [".", ".", ".", ".", ".", "."],
+        F: [".", ".", ".", ".", ".", "."],
+        G: [".", ".", ".", ".", ".", "."]
+      }
   end
 end
