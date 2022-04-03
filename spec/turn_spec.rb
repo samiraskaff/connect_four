@@ -1,7 +1,6 @@
 require "pry"
 require "rspec"
 require "./lib/board"
-require "./lib/game"
 require "./lib/turn"
 
 RSpec.describe Turn do
