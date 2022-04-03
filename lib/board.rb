@@ -1,25 +1,25 @@
 require "pry"
-class Board
-  attr_reader :columns, :board
 
-  # creates a board
+class Board
+  attr_reader :columns
+
+  # creates a columns
   def initialize
     @columns =
-    {
-      A: [".", ".", ".", ".", ".", "."],
-      B: [".", ".", ".", ".", ".", "."],
-      C: [".", ".", ".", ".", ".", "."],
-      D: [".", ".", ".", ".", ".", "."],
-      E: [".", ".", ".", ".", ".", "."],
-      F: [".", ".", ".", ".", ".", "."],
-      G: [".", ".", ".", ".", ".", "."]
-    }
+      {
+        A: [".", ".", ".", ".", ".", "."],
+        B: [".", ".", ".", ".", ".", "."],
+        C: [".", ".", ".", ".", ".", "."],
+        D: [".", ".", ".", ".", ".", "."],
+        E: [".", ".", ".", ".", ".", "."],
+        F: [".", ".", ".", ".", ".", "."],
+        G: [".", ".", ".", ".", ".", "."]
+      }
   end
 
   # displays a board
 
   def display
-
     puts columns.keys.join
     starting_index = 5
     6.times do
@@ -28,18 +28,6 @@ class Board
         columns[:G][starting_index]
       starting_index -= 1
     end
-    return
+    nil
   end
-
-  # def place_piece(column_key, x_o)
-  #   indx = columns[column_key].find_index(".")
-  #   if indx == nil
-  #     p "That's not a valid option"
-  #     #code runs here to return to user input...maybe
-  #   elsif indx.between?(0, 5)
-  #     columns[column_key][indx] = x_o
-  #   else
-  #     raise "There was an error placing a piece"
-  #   end
-  # end
 end
