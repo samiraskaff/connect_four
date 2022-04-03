@@ -10,17 +10,11 @@ class Turn
   # takes user input, retries on invalid input
   def player_input
     loop do
+      p "Please select a column."
       player_column_input = $stdin.gets.chomp.upcase.to_sym
       if @valid_keys.include?(player_column_input)
-        indx = @board.columns[player_column_input].find_index(".")
-        if indx.nil?
-          p "That's not a valid option. Please make a valid selection."
-        elsif indx.between?(0, 5)
-          @board.columns[player_column_input][indx] = "x"
-          break
-        else
-          p "That's not a valid option. Please make a valid selection."
-        end
+        @board.place_piece(player_column_input)
+        break
       else
         p "That's not a valid option. Please make a valid selection."
       end
@@ -29,9 +23,8 @@ class Turn
 
   # gives random computer input, repeat until input is valid
   def computer_input
-    computer_column_input = [:A, :B, :C, :D, :E, :F, :G].sample
-    if @valid_keys.include?(computer_column_input)
-      @board.place_piece(computer_column_input, "o")
-    end # try again
+    p "Computer takes a turn."
+    @board.computer_place_piece
+    sleep(1)
   end
 end
