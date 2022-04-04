@@ -157,4 +157,9 @@ class Board
         G: [".", ".", ".", ".", ".", "."]
       }
   end
+
+  # this method exists to test win scenarios and reset
+  def reassign_board(new_columns)
+    @columns = new_columns
+  end
 end

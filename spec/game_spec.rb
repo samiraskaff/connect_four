@@ -13,13 +13,4 @@ RSpec.describe Game do
 
     expect(game).to be_an_instance_of(Game)
   end
-
-  xit "Game can start" do
-    board = Board.new
-    turn = Turn.new(board)
-    player = "Thelonious"
-    game = Game.new(turn, player)
-
-    expect(game.start).to eq(nil)
-  end
 end

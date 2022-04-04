@@ -17,7 +17,8 @@ class Game
       p "Enter p to play. Enter q to quit."
       game_start_input = gets.chomp.downcase
       if game_start_input == "p"
-        # turn.board.reset
+        turn.board.reset
+        @round = 0
         loop do
           if @round == 21
             turn.board.display
