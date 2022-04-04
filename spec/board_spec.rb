@@ -41,40 +41,26 @@ RSpec.describe Board do
     board = Board.new
 
     expect(board.win?).to eq(false)
-    board.reassign_board({
-      A: ["x", ".", ".", ".", ".", "."],
-      B: [".", "x", ".", ".", ".", "."],
-      C: [".", ".", "x", ".", ".", "."],
-      D: [".", ".", ".", "x", ".", "."],
-      E: [".", ".", ".", ".", ".", "."],
-      F: [".", ".", ".", ".", ".", "."],
-      G: [".", ".", ".", ".", ".", "."]
-    })
+
+    board.columns[:A][0] = "x"
+    board.columns[:B][1] = "x"
+    board.columns[:C][2] = "x"
+    board.columns[:D][3] = "x"
     expect(board.win?).to eq(true)
 
-    board.reassign_board({
-        A: ["o", ".", ".", ".", ".", "."],
-        B: [".", "o", ".", ".", ".", "."],
-        C: [".", ".", "o", ".", ".", "."],
-        D: [".", ".", ".", "o", ".", "."],
-        E: [".", ".", ".", ".", ".", "."],
-        F: [".", ".", ".", ".", ".", "."],
-        G: [".", ".", ".", ".", ".", "."]
-      })
-      expect(board.win?).to eq(true)
+    board.columns[:A][0] = "o"
+    board.columns[:B][1] = "o"
+    board.columns[:C][2] = "o"
+    board.columns[:D][3] = "o"
+    expect(board.win?).to eq(true)
   end
 
   it "resets the board" do
     board = Board.new
-    board.reassign_board({
-        A: ["o", ".", ".", ".", ".", "."],
-        B: [".", "o", ".", ".", ".", "."],
-        C: [".", ".", "o", ".", ".", "."],
-        D: [".", ".", ".", "o", ".", "."],
-        E: [".", ".", ".", ".", ".", "."],
-        F: [".", ".", ".", ".", ".", "."],
-        G: [".", ".", ".", ".", ".", "."]
-      })
+    board.columns[:A][0] = "x"
+    board.columns[:B][1] = "x"
+    board.columns[:C][2] = "x"
+    board.columns[:D][3] = "x"
     board.reset
 
     expect(board.win?).to eq(false)
