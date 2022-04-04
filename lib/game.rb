@@ -25,8 +25,14 @@ class Game
             p "The game is a draw, gg!"
             break
           else
-            turn.board.display
-            turn.player_input
+            loop do
+              turn.board.display
+              player_choice = turn.player_input
+              if turn.player_input_validation(player_choice) == true
+                turn.player_place_piece(player_choice)
+                break
+              end
+            end
             if turn.board.win? == true
               turn.board.display
               p "Congrats #{player}! You have won!"
