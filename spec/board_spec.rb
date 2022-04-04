@@ -19,7 +19,7 @@ RSpec.describe Board do
       ".......",
       ".......",
       "......."
-      ])
+    ])
   end
 
   it "prints a board" do
@@ -71,6 +71,6 @@ RSpec.describe Board do
       ".......",
       ".......",
       "......."
-      ])
+    ])
   end
 end

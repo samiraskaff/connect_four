@@ -17,7 +17,7 @@ class Board
       }
   end
 
-  # organizes board into rows
+  # organizes board into an array of strings (rows)
   def row
     rows = []
     starting_index = 5
@@ -36,25 +36,25 @@ class Board
     puts row
   end
 
-  def player_place_piece
-    loop do
-      p "Please select a columns."
-      player_column_input = $stdin.gets.chomp.upcase.to_sym
-      if columns.key?(player_column_input)
-        indx = columns[player_column_input].find_index(".")
-        if indx.nil?
-          p "That's not a valid option. Please make a valid selection."
-        elsif indx.between?(0, 5)
-          columns[player_column_input][indx] = "x"
-          break
-        else
-          p "That's not a valid option. Please make a valid selection."
-        end
-      else
-        p "That's not a valid option. Please make a valid selection."
-      end
-    end
-  end
+  # def player_place_piece
+  #   loop do
+  #     p "Please select a columns."
+  #     player_column_input = $stdin.gets.chomp.upcase.to_sym
+  #     if columns.key?(player_column_input)
+  #       indx = columns[player_column_input].find_index(".")
+  #       if indx.nil?
+  #         p "That's not a valid option. Please make a valid selection."
+  #       elsif indx.between?(0, 5)
+  #         columns[player_column_input][indx] = "x"
+  #         break
+  #       else
+  #         p "That's not a valid option. Please make a valid selection."
+  #       end
+  #     else
+  #       p "That's not a valid option. Please make a valid selection."
+  #     end
+  #   end
+  # end
 
   def computer_place_piece
     loop do
