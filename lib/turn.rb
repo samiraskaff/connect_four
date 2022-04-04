@@ -4,7 +4,6 @@ class Turn
   attr_reader :board
   def initialize(board)
     @board = board
-    @valid_keys = [:A, :B, :C, :D, :E, :F, :G]
   end
 
   # takes user input, retries on invalid input
