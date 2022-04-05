@@ -27,9 +27,9 @@ class Game
           else
             loop do
               turn.board.display
-              player_choice = turn.player_input
-              if turn.player_input_validation(player_choice) == true
-                turn.player_place_piece(player_choice)
+              location = turn.player_input
+              if turn.input_validation(location) == true
+                turn.place_piece(location, "x")
                 break
               end
             end
@@ -38,11 +38,17 @@ class Game
               p "Congrats #{player}! You have won!"
               break
             end
-            turn.board.display
-            turn.computer_input
+            loop do
+              turn.board.display
+              location = turn.computer_input
+              if turn.input_validation(location) == true
+                turn.place_piece(location, "o")
+                break
+              end
+            end
             if turn.board.win? == true
               turn.board.display
-              p "You lost to the computer! ggez..."
+              p "Computer has won, gg!"
               break
             end
             @round += 1
