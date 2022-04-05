@@ -38,8 +38,9 @@ class Game
               p "Congrats #{player}! You have won!"
               break
             end
+            turn.board.display
+            p "Computer takes a turn."
             loop do
-              turn.board.display
               location = turn.computer_input
               if turn.input_validation(location) == true
                 turn.place_piece(location, "o")

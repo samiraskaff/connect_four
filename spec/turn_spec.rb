@@ -11,7 +11,10 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
   end
 
-  it "validates input" do
+  it "has attributes" do
+  end
+
+  it "checks if column is full" do
     board = Board.new
     turn = Turn.new(board)
 

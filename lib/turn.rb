@@ -12,7 +12,7 @@ class Turn
     $stdin.gets.chomp.upcase.to_sym
   end
 
-  # tests input
+  # checks if column is full
   def input_validation(location)
     if @board.columns.key?(location)
       indx = @board.columns[location].find_index(".")
@@ -36,7 +36,6 @@ class Turn
 
   # gives random computer input
   def computer_input
-    p "Computer takes a turn."
     @board.columns.keys.sample
   end
 end
