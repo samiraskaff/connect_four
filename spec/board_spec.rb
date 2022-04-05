@@ -53,6 +53,22 @@ RSpec.describe Board do
     board.columns[:C][2] = "o"
     board.columns[:D][3] = "o"
     expect(board.win?).to eq(true)
+
+    # horizontal
+    board.reset
+    board.columns[:A][0] = "x"
+    board.columns[:B][0] = "x"
+    board.columns[:C][0] = "x"
+    board.columns[:D][0] = "x"
+    expect(board.win?).to eq(true)
+
+    # vertical
+    board.reset
+    board.columns[:A][2] = "x"
+    board.columns[:A][3] = "x"
+    board.columns[:A][4] = "x"
+    board.columns[:A][5] = "x"
+    expect(board.win?).to eq(true)
   end
 
   it "resets the board" do
