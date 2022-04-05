@@ -36,7 +36,6 @@ class Turn
 
   # gives random computer input
   def computer_input
-    p "Computer takes a turn."
     @board.columns.keys.sample
   end
 end
