@@ -36,37 +36,7 @@ class Board
     puts row
   end
 
-  # def player_place_piece
-  #   loop do
-  #     p "Please select a columns."
-  #     player_column_input = $stdin.gets.chomp.upcase.to_sym
-  #     if columns.key?(player_column_input)
-  #       indx = columns[player_column_input].find_index(".")
-  #       if indx.nil?
-  #         p "That's not a valid option. Please make a valid selection."
-  #       elsif indx.between?(0, 5)
-  #         columns[player_column_input][indx] = "x"
-  #         break
-  #       else
-  #         p "That's not a valid option. Please make a valid selection."
-  #       end
-  #     else
-  #       p "That's not a valid option. Please make a valid selection."
-  #     end
-  #   end
-  # end
-
-  def computer_place_piece
-    loop do
-      computer_column_input = columns.keys.sample
-      indx = columns[computer_column_input].find_index(".")
-      if !indx.nil?
-        columns[computer_column_input][indx] = "o"
-        break
-      end
-    end
-  end
-
+  # checks if column selection results in a win
   def win?
     win_array = [
       diagonal_win_1 = [columns[:A][0], columns[:B][1], columns[:C][2], columns[:D][3]],
@@ -145,6 +115,7 @@ class Board
     win_array.include?(win_cond_1) || win_array.include?(win_cond_2)
   end
 
+  # resets columns to original array
   def reset
     @columns =
       {

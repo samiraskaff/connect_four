@@ -6,7 +6,7 @@ RSpec.describe Board do
   it "exists" do
     board = Board.new
 
-    expect(board).to be_an_instance_of Board
+    expect(board).to be_an_instance_of(Board)
   end
 
   it "stores rows in an array for printing" do
