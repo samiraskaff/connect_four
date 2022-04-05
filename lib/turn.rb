@@ -12,10 +12,10 @@ class Turn
     $stdin.gets.chomp.upcase.to_sym
   end
 
-  # tests user input
-  def player_input_validation(player_choice)
-    if @board.columns.key?(player_choice)
-      indx = @board.columns[player_choice].find_index(".")
+  # tests input
+  def input_validation(location)
+    if @board.columns.key?(location)
+      indx = @board.columns[location].find_index(".")
       if indx.nil?
         false
       elsif indx.between?(0, 5)
@@ -28,16 +28,15 @@ class Turn
     end
   end
 
-  # places player piece
-  def player_place_piece(player_choice)
-    indx = @board.columns[player_choice].find_index(".")
-    @board.columns[player_choice][indx] = "x"
+  # places piece
+  def place_piece(location, x_o)
+    indx = @board.columns[location].find_index(".")
+    @board.columns[location][indx] = x_o
   end
 
-  # gives random computer input, repeat until input is valid
+  # gives random computer input
   def computer_input
     p "Computer takes a turn."
-    @board.computer_place_piece
-    sleep(1)
+    @board.columns.keys.sample
   end
 end
