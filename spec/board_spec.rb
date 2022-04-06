@@ -9,6 +9,22 @@ RSpec.describe Board do
     expect(board).to be_an_instance_of(Board)
   end
 
+  it "creates a board hash upon initializing" do
+    board = Board.new
+
+    expect(board.columns).to eq(
+      {
+        A: [".", ".", ".", ".", ".", "."],
+        B: [".", ".", ".", ".", ".", "."],
+        C: [".", ".", ".", ".", ".", "."],
+        D: [".", ".", ".", ".", ".", "."],
+        E: [".", ".", ".", ".", ".", "."],
+        F: [".", ".", ".", ".", ".", "."],
+        G: [".", ".", ".", ".", ".", "."]
+      }
+    )
+  end
+
   it "stores rows in an array for printing" do
     board = Board.new
 
