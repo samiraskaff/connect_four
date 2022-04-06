@@ -8,7 +8,6 @@ class Turn
 
   # takes user input
   def player_input
-    p "Please select a column."
     $stdin.gets.chomp.upcase.to_sym
   end
 

@@ -58,12 +58,14 @@ RSpec.describe Board do
 
     expect(board.win?).to eq(false)
 
+    # testing for "x" diagonal win
     board.columns[:A][0] = "x"
     board.columns[:B][1] = "x"
     board.columns[:C][2] = "x"
     board.columns[:D][3] = "x"
     expect(board.win?).to eq(true)
 
+    # testing for "o" diagonal win
     board.columns[:A][0] = "o"
     board.columns[:B][1] = "o"
     board.columns[:C][2] = "o"
