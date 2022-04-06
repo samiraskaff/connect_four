@@ -12,6 +12,9 @@ RSpec.describe Turn do
   end
 
   it "has attributes" do
+    board = Board.new
+    turn = Turn.new(board)
+    expect(turn.board).to eq(board)
   end
 
   it "checks if column is full" do
