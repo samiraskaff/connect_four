@@ -12,7 +12,7 @@ class Game
 
   # starts a game
   def start
-    p "Welcome to CONNECT FOUR #{player}"
+    p "Welcome to CONNECT FOUR"
     loop do
       p "Enter p to play. Enter q to quit."
       game_start_input = gets.chomp.downcase
@@ -27,10 +27,14 @@ class Game
           else
             loop do
               turn.board.display
+              p "Please select a column."
               location = turn.player_input
               if turn.input_validation(location) == true
                 turn.place_piece(location, "x")
                 break
+              else
+                p "Please make a valid selection."
+                sleep(1)
               end
             end
             if turn.board.win? == true
